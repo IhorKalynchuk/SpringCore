@@ -3,6 +3,7 @@ package com.epam.spring.core;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.epam.spring.core.aspects.StatisticAspect;
 import com.epam.spring.core.beans.Client;
 import com.epam.spring.core.beans.Event;
 import com.epam.spring.core.beans.EventType;
@@ -21,6 +22,8 @@ public class MainApp {
 		ihorEvent.setMsg("Ihor goes at home!");
 		app.logEvent(ihorEvent, EventType.ERROR);
 
+		StatisticAspect statisticAspect = (StatisticAspect) ctx.getBean("statisticAspect");
+		statisticAspect.printStatistic();
 		ctx.close();
 	}
 
